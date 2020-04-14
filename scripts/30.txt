@@ -1,0 +1,24 @@
+#!/bin/bash
+clear
+
+while [ 1 ]
+do
+net=`netstat -s -p tcp|head`
+echo ""
+echo "$net"
+
+ti=`date +"%r"`
+#echo -en "\033[7s"	#save curent position and attributes
+tput sc
+
+#show the clock
+
+tput cup 0 65		#row column
+
+echo -n $ti
+#echo -en "\033[8u"	#restore current screen position and attributes
+tput rc
+
+sleep 60	#after every 1 minute
+done &
+

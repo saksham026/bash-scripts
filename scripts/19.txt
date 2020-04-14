@@ -1,0 +1,22 @@
+#!/bin/bash
+if [ $# -eq 0 ]
+then
+echo "$0:error command argts missing" 
+exit 1
+fi
+
+if [ $# -eq 3 ]
+then
+	echo "$1"
+	a=$(($2-$1))
+	a=$(($a+1))
+	if [ $1 ]
+	then
+		tail -n+$1 $3 |head -n$a
+	else
+		echo "$0:error opening file$3"
+		exit 2
+	fi
+else
+	echo "missing argts"
+fi

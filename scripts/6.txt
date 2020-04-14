@@ -1,0 +1,15 @@
+#!/bin/bash
+#program to simulate echo -n functionality
+clear
+#set -v or set -x
+if [ $# -eq 0 ]	#checking number of arguements
+then
+echo "$0:error command argts missing" 
+exit 1
+
+else
+#set -x
+echo -n "`/bin/echo $1`" #executing system shell files from bin
+
+fi
+	

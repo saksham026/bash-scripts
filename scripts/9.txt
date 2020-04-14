@@ -1,0 +1,86 @@
+#!/bin/bash
+
+clear
+WORD=(keeper cricket bowler batsmen feilder umpire czechoslovakia)
+
+a=$(($RANDOM%7))	#random index
+word=${WORD[$a]}	#word selection
+
+#echo "$word"
+
+correct=$word
+clue1=${correct:0:1}	#first letter
+
+clue2=${correct:${#correct}-1:1}	#last letter
+
+#echo "$clue1"
+#echo "$clue2"
+
+letter_guess=''
+word_guess=''
+store_letter=''
+count=0
+limit=5
+
+echo "Welcome to Guess the Word Game"
+echo "You have 5 attempts at guessing letters in a word"
+echo "Let's begin!"
+echo ""
+
+while [ $count -lt $limit ]	#max 5 chances of letter
+do
+echo "guess a letter:"
+read letter_guess
+#echo "$letter_guess"
+
+    if [[ $word = *$letter_guess* ]]	#wild cards and regular expression
+	then
+        echo "yes!"
+        store_letter=$(($store_letter+$letter_guess))
+        count=$(($count+1))
+
+    fi
+
+    if [[ $word != *$letter_guess* ]]
+	then
+        echo "no!"
+        count=$(($count+1))
+    fi
+
+    if [ $count -eq 2 ]
+    then
+        echo ""
+	echo "Would you like a clue?"
+        read clue_request
+
+        if [ $clue_request -eq 1 ]
+	then
+            echo ""
+            echo "CLUE: The first letter of the word is: $clue1"
+	  echo "CLUE: The last letter of the word is: $clue2"
+	
+	fi        
+	if [ $clue_request -eq 0 ]
+	then
+            echo "overconfident!"
+	fi
+    fi
+
+done
+
+echo ""
+echo "Now its time to guess."
+echo "Guess the whole word: "
+
+read word_guess
+if [[ $word_guess = $correct ]]	#string matching
+then
+        echo "Congrats!"
+
+else if [[ $word_guess != $correct ]]
+then
+        echo "Unlucky! The answer was,$word"
+fi
+fi
+
+echo ""

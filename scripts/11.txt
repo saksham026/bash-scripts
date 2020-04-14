@@ -1,0 +1,52 @@
+#!/bin/bash
+echo "Scientific Calculator"
+while [ 1 ];do
+echo "1.Add 2.Sub 3.Mul 4.Div 5.Trigono 6.Power 7.Log 8.exit"
+read ch
+case "$ch" in
+	1)echo "Enter two numbers"
+		read a
+		read b
+		c=$(echo "$a + $b" | bc)
+		echo "Addition=$c"
+
+	;;2)echo "Enter two numbers"
+		read a
+		read b
+		c=$(echo "$a - $b" | bc)
+		echo "Subtraction=$c"
+	;;3)echo "Enter two numbers"
+		read a
+		read b
+		c=$(echo "$a * $b" | bc)
+		echo "Multiplication=$c"
+	;;4)echo "Enter two numbers"
+		read a
+		read b
+		c=$(echo "$a / $b" | bc)
+		echo "Quotient=$c"
+		c=$(echo "$a % $b" | bc)
+		echo "Remainder=$c"
+	;;5)echo "Enter a number"
+		read a
+		b=$(echo "scale=3; 3.14/180"| bc -l)
+		a=$(echo "$b*$a" | bc -l)
+		echo "$a"
+		c=$(echo "scale=3; s($a)" | bc -l)
+		echo "Sine is $c"
+		c=$(echo "c($a)" | bc -l)
+		echo "Cosine is $c"
+		c=$(echo "a($a)" | bc -l)
+		echo "Tangent is $c"
+	;;6)echo "Enter two numbers"
+		read a
+		read b
+		c=$(echo "$a ^ $b" | bc)
+		echo "$a power $b is $c"
+	;;7)echo "Enter a number"
+		read a
+		c=$(echo "l($a)" | bc -l)
+		echo "Logarithm is $c"
+	;;8)exit 0	
+esac
+done

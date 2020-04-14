@@ -1,0 +1,19 @@
+#!/bin/bash
+
+clear
+echo "Enter principal: "
+read principal
+     
+echo "Enter rate: "
+read rate    
+     
+echo "Enter time in years: "
+read year
+ 
+#calculate compound interest
+
+#a=$(($(($((1+$(($rate/(100*12)))))**$((year*12))))-1))	#without bc
+a=$(echo "scale=3; (1+($rate)/1200)^($year*12)" | bc -l )	#values in decimal
+ci=$(echo "scale=3; $principal*($a-1)" | bc -l )
+     
+echo "Compound interest is: $ci"

@@ -1,0 +1,20 @@
+#!/bin/bash 
+
+clear
+IFS=':'
+counte=0
+countn=0
+for directory in $1; do
+    for file in $directory/*; do
+        if [ -x $file ]; then
+            echo "Executable File: " $file
+	    counte=$(( $counte + 1 ))
+        else
+            echo "Not executable: " $file
+	    countn=$(( $countn + 1 ))        
+	fi
+    done
+done
+echo "total number of executable commands in path are: $counte"
+echo "total number of non-executable commands in path are: $countn"
+

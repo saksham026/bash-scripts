@@ -1,0 +1,69 @@
+#!/bin/bash
+# calc – A command-line calculator that acts as a front end to bc.
+clear
+scale=2
+
+showhelp()
+{
+
+cat << EOF
+In Additon to standard math functions,calc also supports
+a%b       remainder of a/b.
+a^b       exponential : a raised to the b power.
+s(x)      sine of x, x in radians
+c(x)      cosine of x, x in radians
+a(x)      arctangent of x, returns radians
+l(x)      natural lof of x
+e(x)      exponential log of raising to the x
+j(n,x)    Bessel function of integer order n of x
+scale N   show N fractional digits (default=2)
+
+EOF
+}
+
+scriptbc()
+{
+
+if [ $# -eq 0 ]	#checking number of arguements
+then
+echo "$0:error command argts missing; enter args as function name and value" 
+exit 1
+
+elif [ $# -eq 2 ]
+then			#if number of arguements are 2
+echo "scale=4; $1($2)" | bc -l
+
+elif [ $# -eq 3 ]
+then			#if number of arguements are 3
+echo "scale=4; $1=$2;$3" | bc -l
+
+
+elif [ $# -eq 5 ]
+then			#if number of arguements are 5 for conversion from one base to onather
+echo "scale=4; $1=$2;$3=$4;$5	" | bc -l
+
+fi
+	
+}
+
+echo "Calc – a simple calculator. Enter 'help' for help, 'quit' to quit."
+
+echo -n "calc> "
+
+while read command args
+do
+ case $command
+ in   
+     quit|exit)      exit 0                                             ;;
+     help|\?)        showhelp                                           ;;
+     scale)          scale=$args                                        ;;
+     *)              scriptbc "$command" "$args" 	   		;;
+esac
+
+echo -n "calc> "
+done
+
+echo  " "
+
+exit 0
+

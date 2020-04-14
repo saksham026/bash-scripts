@@ -1,0 +1,10 @@
+#!/bin/bash
+# extract the current weather for Chicago, IL
+URL="http://weather.yahoo.com/forecast/USIL0225.html"
+
+lynx -dump $URL | \
+sed -n -fsedcond
+
+lynx -dump $URL | \
+sed -n -fsedtemp
+

@@ -1,0 +1,8 @@
+# Hello World Program in Bash Shell
+clear
+url="https://news.google.com/?h1=en-IN&gl=IN&ceid=IN:en"
+lynx -dump $url | \
+sed -n -fsednews | \
+uniq
+
+

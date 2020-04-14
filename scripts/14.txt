@@ -1,0 +1,63 @@
+#!/bin/bash
+
+clear
+echo "enter path of file: "
+read var		#reading path
+
+if [ -e $var ]		#if file exist
+then
+echo ""
+echo -n	"file name: "
+echo -n `stat -c%n $var`
+
+echo ""			#new line
+
+#c is for format
+echo -n	"size of file in bytes is: "
+echo -n `stat -c%s $var`	#s is for size in bytes
+	
+echo ""
+
+echo -n	"access rights of file are: "
+echo -n `stat -c%A $var`	#A is for access in human readable format
+
+echo ""
+
+echo -n	"file type: "
+echo -n `stat -c%F $var`	#F is for type of file
+
+echo ""
+
+echo -n	"owner group name for file is: "
+echo -n `stat -c%G $var`	#G is group owner name
+
+echo ""
+
+echo -n	"inode number of file is: "
+echo -n `stat -c%i $var`	#i is for it's inode number
+
+echo ""
+
+echo -n	"mount point of file is: "
+echo -n `stat -c%m $var`	#m is for directory info
+
+echo ""
+
+echo -n	"user name of owner of file is: "
+echo -n `stat -c%U $var`	#U is for owner
+
+echo ""
+
+echo -n	"file last accessed: "
+echo -n `stat -c%x $var`	#x is for last access
+
+echo ""
+
+echo -n	"file last modified: "
+echo -n `stat -c%y $var`	#y is for last modified
+
+echo ""
+
+else
+echo "no such file found"
+fi

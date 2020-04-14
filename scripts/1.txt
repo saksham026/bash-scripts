@@ -1,0 +1,47 @@
+#!/bin/bash
+echo "1. for Number and 2. for string"
+read ch
+case "$ch" in
+	1)echo "Enter a number"
+	read n
+	s=0
+	a=$n
+	while [ $a -ne 0 ];do
+	c=$(($a%10))
+	temp=$((s*10))
+	s=$(($temp+c))
+	a=$(($a/10))
+	done
+	if [ $s -eq $n ];then
+		echo "$n is palindrome"
+	else
+		echo "$n is not palindrome"
+	fi
+
+	;;
+	2)echo "Enter a string"
+	read n
+	flag=1
+	i=0
+	j=$((${#n}-1))	#last index value
+	#echo "$i $j"
+	while [ $i -ne $j ];do
+	first=${n:i:1}
+	last=${n:j:1}
+	if [[ $first != $last ]];then
+		flag=0
+		break
+
+	fi
+	i=$((i+1))
+	j=$((j-1))
+	done
+
+	if [ $flag -eq 1 ];then
+		echo "$n is palindrome"
+	else
+		echo "$n is not palindrome"
+	fi
+	;;
+esac
+

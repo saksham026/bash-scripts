@@ -1,0 +1,21 @@
+#!/bin/bash
+#checkspelling - check the spelling of a word
+clear
+spell="ispell -l"
+
+if [ $# -lt 1 ]
+then
+echo "usage: $0 word or words" >&2; exit 1
+fi
+
+for word
+do
+if [ -z $(echo $word | $spell) ]
+then
+echo "$word: spelled correctly."
+else
+echo "$word: mis-spelled."
+fi
+done
+
+exit 0

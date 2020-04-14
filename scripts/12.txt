@@ -1,0 +1,37 @@
+#!/bin/bash
+while [ 1 ];do
+echo "1. Celsius 2.Fahrenheit 3.Kelvin 4. exit"
+read ch
+case "$ch" in
+	1)echo "Enter the tempearture in celsius"
+	read cel
+	a=$(echo "scale=2; 1.8*$cel" | bc -l)	#bc -l for mathematical operations
+	fahr=$(echo "scale=2; $a+32" | bc -l)	#scale for precision
+	echo "Fahrenheit is $fahr"
+
+	kel=$(echo "scale=2; $cel+273" | bc -l)
+	echo "Kelvin is $kel"
+	;;
+
+	2)echo "Enter the tempearture in fahrenheit"
+	read fahr
+	cel=$(echo "scale=2; (5/9)*($fahr-32)" | bc -l)
+	echo "Celsius is $cel"
+
+	kel=$(echo "scale=2; ((5/9)*($fahr-32))+273" | bc -l)
+	echo "Kelvin is $kel"
+
+	;;
+	3)echo "Enter the tempearture in kelvin"
+	read kel
+	cel=$(echo "scale=2; $kel-273" | bc -l)
+	echo "Celsius is $cel"
+
+	a=$(echo "scale=2; 1.8*$cel" | bc -l)
+	fahr=$(echo "scale=2; $a+32" | bc -l)
+	echo "Fahrenheit is $fahr"
+	;;
+
+	4)exit 0
+esac
+done

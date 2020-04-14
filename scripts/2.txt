@@ -1,0 +1,15 @@
+#!/bin/bash
+re='[a-zA-Z]'
+nu='[0-9]'
+echo "plese enter a varible value to define its type"
+read var		#reading variable
+if [[ $var = $re ]]	#=~ for regular expression and double square bracket for less error prone 
+then
+echo "entered varible is alphabet"
+else if [[ $var = $nu ]]	#=~regular expression
+then
+echo "entered varible is number"
+else
+echo "invalid number"
+fi			#second if
+fi			#first if

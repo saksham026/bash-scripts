@@ -1,0 +1,13 @@
+#!/bin/bash
+a=""
+n=""
+echo "enter the date in dd/mm/yyyy format"
+read n
+mon=(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec)
+IFS='/'
+read -ra a <<< "$n"
+date=${a[0]}
+month=${a[1]}
+year=${a[2]}
+index=$(($month-1))
+echo "${mon[$index]} $date $year" 

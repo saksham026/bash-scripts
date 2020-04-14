@@ -1,0 +1,24 @@
+#!/bin/bash
+echo "Enter the day"
+read day
+echo "Enter the month"
+read month
+echo "Enter the year"
+read year
+m=(31 28 31 30 31 30 31 31 30 31 30 31)
+if [ $(($year%4)) -eq 0 ];then
+	m[1]=29
+fi
+index=$(($month-1))
+flag=1
+if [ $year -lt 1 -a $month -le 0 -a $month -ge 13 ];then
+	flag=0
+	echo "Date is Invalid"
+fi
+if [ $flag -eq 1 ];then
+	if [ $day -le ${m[index]} -a $day -ge 1 ];then
+		echo "Date is valid"
+	else
+		echo "Date is invalid"
+	fi
+fi 

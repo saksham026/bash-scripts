@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# define - given a word, return its definition from dictionary.com
+
+clear
+url="https://www.dictionary.com/browse/"
+
+if [ $# -ne 1 ] ; then
+  echo "Usage: $0 word" >&2 
+  exit 1
+fi
+
+echo "noun:"
+lynx -dump "$url$1" | \
+sed -n -fseddict2
+
+echo "verb:"
+lynx -dump "$url$1" | \
+sed -n -fseddict

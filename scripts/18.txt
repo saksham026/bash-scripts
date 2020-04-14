@@ -1,0 +1,44 @@
+#!/bin/bash 
+clear
+while [ 1 ]
+do
+
+echo "Enter Choice :"
+echo "1. create a file"
+echo "2. delete a file"
+echo "3. open a file in editor"
+echo "4. open a file in editor"
+echo "5. concatenate a file"
+echo "6. exit"
+read ch 
+
+#switch
+case $ch in
+  1) 	echo "Enter name of file : "
+	read a
+	echo `touch $a`
+	echo "file made" 
+  ;; 
+  2)	echo "Enter name of file : "
+	read a  
+	echo `rm $a`
+	echo "file deleted"
+  ;; 
+  3)	echo "Enter name of file : "
+	read a 
+	echo -e `xdg-open $a`
+  ;;
+  4)	echo "Enter name of file : "
+	read a 
+	echo -e `less $a`
+  ;; 
+  5)	echo "Enter name of file 1 and 2: "
+	read a 
+	read b
+	echo `cat $a $b`
+  ;;
+  6)exit
+  ;; 
+esac
+
+done

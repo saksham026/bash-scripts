@@ -1,0 +1,8 @@
+#!/bin/bash
+# extract the current weather for Chicago, IL
+URL="http://www.google.com.br"
+
+lynx -dump $URL | awk '/http/{print $2}' > links.txt
+
+cat links.txt
+
